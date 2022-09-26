@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +22,27 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('welcome', function () {
     return response()->json(['data' => 'Welcome to Laravel', 'code' => 200]);
+});
+
+Route::get('crypt', function () {
+    $md5 = md5('laravel');
+    $hash_make = Hash::make('laravel');
+    $bcrypt = bcrypt('laravel');
+    $laravel = 'laravel';
+    $encrypted = Crypt::encrypt($laravel);
+    $decrypted = Crypt::decrypt($encrypted);
+    $equals = false;
+    if($laravel === $decrypted){
+        $equals = true;
+    }
+    return response()->json([
+        'md5' => $md5,
+        'hash_make' => $hash_make,
+        'bcrypt' => $bcrypt,
+        'laravel' => $laravel,
+        'encrypt_laravel' => $encrypted,
+        'decrypt_laravel' => $decrypted,
+        'equals' => $equals,
+        'code' => 200
+    ]);
 });

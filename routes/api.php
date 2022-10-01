@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,13 @@ use Illuminate\Support\Facades\Hash;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->group(function () {
+    // Route::get('/products','ProductsController@index')->name('products');
+    Route::get('/products', [ProductsController::class, 'index']);
+    // return $request->user();
 });
 
 Route::get('welcome', function () {
@@ -32,7 +38,7 @@ Route::get('crypt', function () {
     $encrypted = Crypt::encrypt($laravel);
     $decrypted = Crypt::decrypt($encrypted);
     $equals = false;
-    if($laravel === $decrypted){
+    if ($laravel === $decrypted) {
         $equals = true;
     }
     return response()->json([

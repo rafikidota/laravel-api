@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +24,18 @@ use App\Http\Controllers\ProductsController;
 Route::middleware('auth:api')->group(function () {
     // Route::get('/products','ProductsController@index')->name('products');
     Route::get('/products', [ProductsController::class, 'index']);
+    Route::get('/mail/basic', [MailController::class, 'basic']);
+    Route::get('/mail/html', [MailController::class, 'html']);
+    Route::get('/mail/template', [MailController::class, 'template']);
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
     // return $request->user();
 });
+
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::get('welcome', function () {
     return response()->json(['data' => 'Welcome to Laravel', 'code' => 200]);

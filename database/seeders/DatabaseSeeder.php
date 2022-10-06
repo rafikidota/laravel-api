@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $this->call(LaratrustSeeder::class);
-        $this->call(CourseSeeder::class);
+        $this->call([
+            LaratrustSeeder::class,
+            CourseSeeder::class
+        ]);
     }
 }

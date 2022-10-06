@@ -8,14 +8,15 @@ class CourseController extends Controller
 {
     public function index()
     {
-        return "Welcome to courses";
+        return view('courses.index');
     }
     public function create()
     {
-        return "Create a course";
+        return view('courses.create');
     }
     public function show($course)
     {
-        return "Welcome to $course course";
+        return view('courses.show', compact('course'));
+        // return view('courses.show', ['course' => $course]);
     }
 }

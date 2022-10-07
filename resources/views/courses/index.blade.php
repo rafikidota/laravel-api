@@ -6,7 +6,9 @@
     <hr>
     <ul>
         @foreach ($courses as $course)
-            <li>{{ $course->name }}</li>
+            <li>
+                <a href="{{ route('course.show',$course->id) }}">{{ $course->name }}</a>
+            </li>
         @endforeach
     </ul>
     {{ $courses->links() }}

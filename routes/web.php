@@ -18,9 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/courses',[CourseController::class,'index']);
-Route::get('/course/create',[CourseController::class,'create']);
-Route::get('/course/{course}',[CourseController::class,'show']);
+Route::get('/courses',[CourseController::class,'index'])->name('courses');
+Route::get('/course/create',[CourseController::class,'create'])->name('course.create');
+Route::get('/course/{course}',[CourseController::class,'show'])->name('course.show');
 
 // Route::get('/course/{course}/{category}', function ($course, $category) {
 //     if ($category) {

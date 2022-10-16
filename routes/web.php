@@ -18,10 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/courses',[CourseController::class,'index'])->name('courses');
-Route::get('/course/create',[CourseController::class,'create'])->name('course.create');
-Route::get('/course/{course}',[CourseController::class,'show'])->name('course.show');
-
+Route::get('courses',[CourseController::class,'index'])->name('courses.index');
+Route::get('course/create',[CourseController::class,'create'])->name('courses.create');
+Route::post('courses',[CourseController::class,'store'])->name('courses.store');
+Route::get('course/{id}',[CourseController::class,'show'])->name('courses.show');
 // Route::get('/course/{course}/{category}', function ($course, $category) {
 //     if ($category) {
 //         return "Create a course $course, category $category";
